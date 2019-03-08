@@ -1,0 +1,101 @@
+// Bennett Assignment 3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Assignment 3
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	const float CHECKUPCOST = 1200, BLOODWORK = 120, MAMCOST = 280, CCSCREEN = 640, PREOPEVALCOST = 500;
+	int numOfPatients, patientBirthMonth, patientBirthDay, patientBirthYear, insuranceBrand, count = 1;
+	string patientName, patientAddress;
+	char yearlyCheckup, bloodWork, mammo, colonCancer, preopEval, otherInsurance;
+	float patientRawTotal, patientCopay;
+
+	cout << "How many patients do you have?" << endl;
+	cin >> numOfPatients;
+
+	while (numOfPatients > 0)
+	{
+		cout << "----------------- Patient " << count << "---------------" << endl;
+		
+		cout << "What is the name of the patient?" << endl;
+		cin >> patientName;
+
+		cout << "What is the patients address?" << endl;
+		cin >> patientAddress;
+		
+		cout << "What is the birth month of the patient?" << endl;
+		cin >> patientBirthMonth;
+
+		
+		while (true)
+		{
+			if (patientBirthMonth < 1 || patientBirthMonth > 12)
+			{
+				cout << "That is an invalid month.  Please enter a valid month." << endl;
+				cout << "What is the birth month of the patient?" << endl;
+				cin >> patientBirthMonth;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		
+		cout << "What is the birth day of the patient?" << endl;
+		cin >> patientBirthDay;
+
+		while (true)
+		{
+			if (patientBirthDay < 1 || patientBirthDay > 31)
+			{
+				cout << "That is an invalid day.  Please enter a valid day." << endl;
+				cout << "What is the birth day of the patient?" << endl;
+				cin >> patientBirthDay;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		cout << "What is the birth year of the patient?" << endl;
+		cin >> patientBirthYear;
+
+		while (true)
+		{
+			if (patientBirthYear > 2019)
+			{
+				cout << "Patient cannot be born in the future!!" << endl;
+				cout << "What is the birth year of the patient?" << endl;
+				cin >> patientBirthYear;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		cout << "Yearly Checkup?" << endl;
+		cin >> yearlyCheckup;
+
+		cout << "Blood Work?" << endl;
+		cin >> bloodWork;
+
+		cout << "Mammogram?" << endl;
+		cin >> mammo;
+
+		cout << "Colon cancer screening evaluations?" << endl;
+		cin >> colonCancer;
+
+		cout << "Preoperative evaluation of medical risks prior to surgery?" << endl;
+		cin >> preopEval;
+	}
+
+}
+
