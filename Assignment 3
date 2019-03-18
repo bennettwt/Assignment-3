@@ -12,211 +12,211 @@ int main()
 {
 	float checkUpCost = 1200, bloodWorkCost = 120, mamCost = 280, ccScreenCost = 640, preopEvalCost = 500;
 	float healthDiamond = 0.90, healthGold = 0.80, healthSilver500Up = 0.80, healthSilverBtw100n500 = 0.70, purpleForest205up = 0.80, purpleForest205dwn = 0.40, blueHorizon = 0.60, discountTotal = 0;
-	int numOfPatients, patientBirthMonth, patientBirthDay, patientBirthYear, insuranceBrand, count = 1, insuranceCounter = 0;
+	int numOfPatients, patientBirthMonth, patientBirthDay, patientBirthYear, count = 1, insuranceCounter = 0;
 	string patientName, patientAddress;
 	char yearlyCheckup, bloodWork, mammo, colonCancer, preopEval, otherInsurance, insuranceType;
 	float patientRawTotal = 0, subTotal = 0, patientCopay;
 
-	cout << "How many patients do you have?" << endl;
+	cout << "How many patients do you have?" << endl; // asks the user to input the number of patients to enter
 	cin >> numOfPatients;
 
-	while (numOfPatients > 0)
+	while (numOfPatients > 0) // loops while the number of patients is above 0
 	{
 		cout << "----------------- Patient " << count << "---------------" << endl;
 
-		cout << "What is the name of the patient?" << endl;
+		cout << "What is the name of the patient?" << endl; // asks for user to input name of patient and stores it in a variable (doesnt work with spaces)
 		cin >> patientName;
 
-		cout << "What is the patients address?" << endl;
+		cout << "What is the patients address?" << endl; // asks user to input patient address and stores it in a variable (doesnt work with spaces)
 		cin >> patientAddress;
 
-		cout << "What is the birth month of the patient?" << endl;
+		cout << "What is the birth month of the patient?" << endl; // asks for birthmonth of patient and stores it in a variable
 		cin >> patientBirthMonth;
 
 
-		while (true)
+		while (true) // loops until it encounters a break statement
 		{
-			if (patientBirthMonth < 1 || patientBirthMonth > 12)
+			if (patientBirthMonth < 1 || patientBirthMonth > 12) // checks for a valid birth month, there can be no month lower than 1 or greater than 12
 			{
 				cout << "That is an invalid month.  Please enter a valid month." << endl;
-				cout << "What is the birth month of the patient?" << endl;
+				cout << "What is the birth month of the patient?" << endl; // re-asks to input a valid birth month
 				cin >> patientBirthMonth;
 			}
-			else
+			else // if month is valid, breaks the loop
 			{
-				break;
+				break; 
 			}
 		}
 
 
-		cout << "What is the birth day of the patient?" << endl;
+		cout << "What is the birth day of the patient?" << endl; // asks for the birth day of the patient and stores it in a variable
 		cin >> patientBirthDay;
 
-		while (true)
+		while (true) // loops until a break statement
 		{
-			if (patientBirthDay < 1 || patientBirthDay > 31)
+			if (patientBirthDay < 1 || patientBirthDay > 31) // checks for valid birth day, there can be no day lower than 1 or larger than 31
 			{
 				cout << "That is an invalid day.  Please enter a valid day." << endl;
-				cout << "What is the birth day of the patient?" << endl;
+				cout << "What is the birth day of the patient?" << endl; // re-asks for birth day input
 				cin >> patientBirthDay;
 			}
-			else
+			else // if birth day is valid, breaks the loop
 			{
 				break;
 			}
 		}
 
-		cout << "What is the birth year of the patient?" << endl;
+		cout << "What is the birth year of the patient?" << endl; // asks for birth month of patient and stores it in a variable
 		cin >> patientBirthYear;
 
-		while (true)
+		while (true) // loops until a break statement is encountered
 		{
-			if (patientBirthYear > 2019)
+			if (patientBirthYear > 2019) // checks for valid birth year, it cannot be larger than 2019
 			{
 				cout << "Patient cannot be born in the future!!" << endl;
-				cout << "What is the birth year of the patient?" << endl;
+				cout << "What is the birth year of the patient?" << endl; // re-asks for input 
 				cin >> patientBirthYear;
 			}
-			else
+			else // if its a valid birth year breaks the loop
 			{
 				break;
 			}
 		}
 
-		cout << "Yearly Checkup?" << endl;
+		cout << "Yearly Checkup?" << endl; // asks the user if the patient recieved a yearly checkup
 		cin >> yearlyCheckup;
 
-		if (yearlyCheckup == 'y' || yearlyCheckup == 'Y')
+		if (yearlyCheckup == 'y' || yearlyCheckup == 'Y') // if user input is y or Y adds the cost of the service to the raw total
 		{
 			patientRawTotal += checkUpCost;
 		}
 
-		cout << "Blood Work?" << endl;
+		cout << "Blood Work?" << endl; // asks the user if the patient had blood work done
 		cin >> bloodWork;
 
-		if (bloodWork == 'y' || bloodWork == 'Y')
+		if (bloodWork == 'y' || bloodWork == 'Y') // if user input is y or Y adds the cost of the service to the raw total
 		{
 			patientRawTotal += bloodWorkCost;
 		}
 
-		cout << "Mammogram?" << endl;
+		cout << "Mammogram?" << endl; // asks the user if the patient recieved a mammogram
 		cin >> mammo;
 
-		if (mammo == 'y' || mammo == 'Y')
+		if (mammo == 'y' || mammo == 'Y') // if user input is y or Y adds the cost of the service to the raw total
 		{
 			patientRawTotal += mamCost;
 		}
 
-		cout << "Colon cancer screening evaluations?" << endl;
+		cout << "Colon cancer screening evaluations?" << endl; // asks the user if the patient recieved a colon cancer screening
 		cin >> colonCancer;
 
-		if (colonCancer == 'y' || colonCancer == 'Y')
+		if (colonCancer == 'y' || colonCancer == 'Y') // if user input is y or Y adds the cost of the service to the raw total
 		{
 			patientRawTotal += ccScreenCost;
 		}
 
-		cout << "Preoperative evaluation of medical risks prior to surgery?" << endl;
+		cout << "Preoperative evaluation of medical risks prior to surgery?" << endl; // asks the user if the patient recieved a preop evaluation
 		cin >> preopEval;
 
-		if (preopEval == 'y' || preopEval == 'Y')
+		if (preopEval == 'y' || preopEval == 'Y') // if user input is y or Y adds the cost of the service to the raw total
 		{
 			patientRawTotal += preopEvalCost;
 		}
 
 		subTotal += patientRawTotal;
 
-		while (true)
+		while (true) // loops until a break statement is encountered
 		{
 			cout << "If you have NO insurance type 0 \n"
 				<< "If your insurance is Universal Health Diamond type 1 \n"
-				<< "If your insurance is Universal Health Golden type 2 \n"
+				<< "If your insurance is Universal Health Golden type 2 \n"  // displays insurance options and asks user to input which type they have
 				<< "If your insurance is Universal Health Silver type 3 \n"
 				<< "If your insurance is Purple Forest type 4 \n"
 				<< "If your insurance is Blue Horizon type 5 \n" << endl;
 			cin >> insuranceType;
 
-			if (insuranceType == '0')
+			if (insuranceType == '0') // if user inputs 0 for no insurance it breaks the loop as no discount is applied and the raw total is the copay
 			{
 				break;
 			}
-			
+
 			switch (insuranceType)
 			{
 
-			    case '1': discountTotal += healthDiamond;
-					  break;
-				
+			case '1': discountTotal += healthDiamond; // if the user enters 1 they recieve a 90% discount
+				break;
 
-				case '2': if (subTotal < 250)
-				{
-					break;
-				}
-				else
-				{
-					discountTotal += healthGold;
-					break;
-				}
 
-				case '3': if (subTotal > 500)
-				{
-					discountTotal += healthSilver500Up;
-					break;
-				}
-				else
-				{
-					discountTotal += healthSilverBtw100n500;
-					break;
-				}
-
-				case '4': if (subTotal < 205)
-				{
-					discountTotal += purpleForest205dwn;
-					break;
-				}
-				else
-				{
-					discountTotal += purpleForest205up;
-					break;
-				}
-
-				case '5': discountTotal += blueHorizon;
-					  break;
-
-				default: cout << "This is not a valid input, please choose again" << endl;
-					 break;
+			case '2': if (subTotal < 250) // if user entered 2 and the total is above 250 they recieve a 80% discount
+			{
+				break;
+			}
+					  else
+			{
+				discountTotal += healthGold;
+				break;
 			}
 
-			subTotal -= subTotal * discountTotal;
+			case '3': if (subTotal > 500) // if user entered 3 and the total is above 500 they recieve a 80% discount
+			{
+				discountTotal += healthSilver500Up;
+				break;
+			}
+					  else // if user entered 3 and total is between 100 and 500 they recieve a 70% discount
+			{
+				discountTotal += healthSilverBtw100n500;
+				break;
+			}
 
-			
+			case '4': if (subTotal < 205) // if user entered 4 and total is less than 205 they recieve a 40% discount
+			{
+				discountTotal += purpleForest205dwn;
+				break;
+			}
+					  else // if user entered 4 and total is greater than 205 they recieve an 80% discount
+			{
+				discountTotal += purpleForest205up;
+				break;
+			}
 
-			insuranceCounter++;
+			case '5': discountTotal += blueHorizon; // if user chose 5 they recieve a 60% discount
+				break;
 
-			if (insuranceCounter == 5)
+			default: cout << "This is not a valid input, please choose again" << endl; // if user does not choose 1-5 invalid statement is printed
+				break;
+			}
+
+			subTotal -= subTotal * discountTotal; // subtracts the discount from the total
+
+
+
+			insuranceCounter++; // adds one to the counter
+
+			if (insuranceCounter == 5) // once insurance counter is equal to 5 the loop will break as there are only 5 insurance brands
 			{
 				break;
 			}
 
-			
 
-			cout << "Do you have another insurance?" << endl;
+
+			cout << "Do you have another insurance?" << endl; // asks the user if they have another insurance
 			cin >> otherInsurance;
 
-			if (otherInsurance == 'n' || otherInsurance == 'N')
+			if (otherInsurance == 'n' || otherInsurance == 'N') // if they answer n then the loop breaks
 			{
 				break;
 			}
-			else if (otherInsurance == 'y' || otherInsurance == 'Y')
+			else if (otherInsurance == 'y' || otherInsurance == 'Y') // if they answer y then the loop is continued
 			{
 				continue;
 			}
 
-			
+
 		}
 
-		
-		
-		if (subTotal < 0)
+
+
+		if (subTotal < 0) // prevents a negative copay
 		{
 			patientCopay = 0;
 		}
@@ -225,14 +225,13 @@ int main()
 			patientCopay = subTotal;
 		}
 
-		cout << "Patient " << count << " raw total is $" << setprecision(2) << fixed << patientRawTotal << endl;
-		cout << "Patient " << count << " copay is $" << setprecision(2) << fixed << patientCopay << endl;
+		cout << "Patient " << count << " raw total is $" << setprecision(2) << fixed << patientRawTotal << endl; // prints the raw total of the patient bill
+		cout << "Patient " << count << " copay is $" << setprecision(2) << fixed << patientCopay << endl;  // prints the copay that the patient actually owes
 
-		count++;
-		numOfPatients--;
+		count++; // increments count variable by 1
+		numOfPatients--; // decrements number of patients by 1
 
-		
+
 	}
 
 }
-
