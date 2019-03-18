@@ -4,16 +4,18 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-	const float CHECKUPCOST = 1200, BLOODWORK = 120, MAMCOST = 280, CCSCREEN = 640, PREOPEVALCOST = 500;
-	int numOfPatients, patientBirthMonth, patientBirthDay, patientBirthYear, insuranceBrand, count = 1;
+	float checkUpCost = 1200, bloodWorkCost = 120, mamCost = 280, ccScreenCost = 640, preopEvalCost = 500;
+	float healthDiamond = 0.90, healthGold = 0.80, healthSilver500Up = 0.80, healthSilverBtw100n500 = 0.70, purpleForest205up = 0.80, purpleForest205dwn = 0.40, blueHorizon = 0.60, discountTotal = 0;
+	int numOfPatients, patientBirthMonth, patientBirthDay, patientBirthYear, insuranceBrand, count = 1, insuranceCounter = 0;
 	string patientName, patientAddress;
-	char yearlyCheckup, bloodWork, mammo, colonCancer, preopEval, otherInsurance;
-	float patientRawTotal, patientCopay;
+	char yearlyCheckup, bloodWork, mammo, colonCancer, preopEval, otherInsurance, insuranceType;
+	float patientRawTotal = 0, subTotal = 0, patientCopay;
 
 	cout << "How many patients do you have?" << endl;
 	cin >> numOfPatients;
@@ -21,17 +23,17 @@ int main()
 	while (numOfPatients > 0)
 	{
 		cout << "----------------- Patient " << count << "---------------" << endl;
-		
+
 		cout << "What is the name of the patient?" << endl;
 		cin >> patientName;
 
 		cout << "What is the patients address?" << endl;
 		cin >> patientAddress;
-		
+
 		cout << "What is the birth month of the patient?" << endl;
 		cin >> patientBirthMonth;
 
-		
+
 		while (true)
 		{
 			if (patientBirthMonth < 1 || patientBirthMonth > 12)
@@ -46,7 +48,7 @@ int main()
 			}
 		}
 
-		
+
 		cout << "What is the birth day of the patient?" << endl;
 		cin >> patientBirthDay;
 
@@ -84,17 +86,152 @@ int main()
 		cout << "Yearly Checkup?" << endl;
 		cin >> yearlyCheckup;
 
+		if (yearlyCheckup == 'y' || yearlyCheckup == 'Y')
+		{
+			patientRawTotal += checkUpCost;
+		}
+
 		cout << "Blood Work?" << endl;
 		cin >> bloodWork;
+
+		if (bloodWork == 'y' || bloodWork == 'Y')
+		{
+			patientRawTotal += bloodWorkCost;
+		}
 
 		cout << "Mammogram?" << endl;
 		cin >> mammo;
 
+		if (mammo == 'y' || mammo == 'Y')
+		{
+			patientRawTotal += mamCost;
+		}
+
 		cout << "Colon cancer screening evaluations?" << endl;
 		cin >> colonCancer;
 
+		if (colonCancer == 'y' || colonCancer == 'Y')
+		{
+			patientRawTotal += ccScreenCost;
+		}
+
 		cout << "Preoperative evaluation of medical risks prior to surgery?" << endl;
 		cin >> preopEval;
+
+		if (preopEval == 'y' || preopEval == 'Y')
+		{
+			patientRawTotal += preopEvalCost;
+		}
+
+		subTotal += patientRawTotal;
+
+		while (true)
+		{
+			cout << "If you have NO insurance type 0 \n"
+				<< "If your insurance is Universal Health Diamond type 1 \n"
+				<< "If your insurance is Universal Health Golden type 2 \n"
+				<< "If your insurance is Universal Health Silver type 3 \n"
+				<< "If your insurance is Purple Forest type 4 \n"
+				<< "If your insurance is Blue Horizon type 5 \n" << endl;
+			cin >> insuranceType;
+
+			if (insuranceType == '0')
+			{
+				break;
+			}
+			
+			switch (insuranceType)
+			{
+
+			    case '1': discountTotal += healthDiamond;
+					  break;
+				
+
+				case '2': if (subTotal < 250)
+				{
+					break;
+				}
+				else
+				{
+					discountTotal += healthGold;
+					break;
+				}
+
+				case '3': if (subTotal > 500)
+				{
+					discountTotal += healthSilver500Up;
+					break;
+				}
+				else
+				{
+					discountTotal += healthSilverBtw100n500;
+					break;
+				}
+
+				case '4': if (subTotal < 205)
+				{
+					discountTotal += purpleForest205dwn;
+					break;
+				}
+				else
+				{
+					discountTotal += purpleForest205up;
+					break;
+				}
+
+				case '5': discountTotal += blueHorizon;
+					  break;
+
+				default: cout << "This is not a valid input, please choose again" << endl;
+					 break;
+			}
+
+			subTotal -= subTotal * discountTotal;
+
+			
+
+			insuranceCounter++;
+
+			if (insuranceCounter == 5)
+			{
+				break;
+			}
+
+			
+
+			cout << "Do you have another insurance?" << endl;
+			cin >> otherInsurance;
+
+			if (otherInsurance == 'n' || otherInsurance == 'N')
+			{
+				break;
+			}
+			else if (otherInsurance == 'y' || otherInsurance == 'Y')
+			{
+				continue;
+			}
+
+			
+		}
+
+		
+		
+		if (subTotal < 0)
+		{
+			patientCopay = 0;
+		}
+		else
+		{
+			patientCopay = subTotal;
+		}
+
+		cout << "Patient " << count << " raw total is $" << setprecision(2) << fixed << patientRawTotal << endl;
+		cout << "Patient " << count << " copay is $" << setprecision(2) << fixed << patientCopay << endl;
+
+		count++;
+		numOfPatients--;
+
+		
 	}
 
 }
